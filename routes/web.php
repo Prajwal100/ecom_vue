@@ -23,3 +23,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/login',[\App\Http\Controllers\AdminController::class,'login']);
     Route::get('/',[\App\Http\Controllers\AdminController::class,'index']);
 });
+
+
+//Authentication
+Route::post('api/v1/login',[\App\Http\Controllers\backend\AuthController::class,'login']);
+
+

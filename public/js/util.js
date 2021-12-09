@@ -1,6 +1,6 @@
 var util = function (debug) {
-	var version = 'v1.2';
-	var author = 'Lenard Mangay-ayam';
+	var version = 'v1.0';
+	var author = 'Prajwal R.';
 	if (debug == undefined) debug = false;
 	if (debug) {
 		console.log('You are running utility on debug');
@@ -16,26 +16,26 @@ var util = function (debug) {
 		 */
 		notify: function(message, type, delay) {
 			$.notifyClose()
-			
+
 			type = (type == undefined) ? 'info' : type;
 			delay = (type == 'loading') ? 0 : 5000;
 
-			var placement = {from: 'top', align: 'center'}
+			var placement = {from: 'top', align: 'right'}
 			var notif = $.notify({message: message},{placement: placement, delay: delay})
 			notif.update('type', 'info');
-			notif.update('icon', 'fa fa-info');
+			notif.update('icon', 'fas fa-info');
 
 			switch (type) {
 				case 'error':
 					notif.update('type', 'danger');
-					notif.update('icon', 'fa fa-warning');
+					notif.update('icon', 'fas fa-warning');
 					break;
 				case 'loading':
-					notif.update('icon', 'fa fa-refresh fa-spin');
+					notif.update('icon', 'fas fa-refresh fa-spin');
 					break;
 				case 'success':
 					notif.update('type', 'success');
-					notif.update('icon', 'fa fa-check');
+					notif.update('icon', 'fas fa-check');
 					break;
 				default:
 					break;
@@ -134,9 +134,9 @@ var util = function (debug) {
 		* @return String message
 		*/
 		messageToString: function(message) {
-			if (message == undefined) return ''; 
+			if (message == undefined) return '';
 			var res = ''
-			for (var i in message) 
+			for (var i in message)
 				res += message[i] + '<br/>';
 			return res;
 		},
@@ -148,8 +148,8 @@ var util = function (debug) {
 		*/
 		validateErrorMessage: function(stat) {
 			var message = '';
-			for (var y in stat) 
-	 			for (var z in stat[y])  
+			for (var y in stat)
+	 			for (var z in stat[y])
 	 				message += stat[y][z] + '<br/>';
 	 		return message;
 		},
@@ -159,7 +159,7 @@ var util = function (debug) {
 		* @params Object message
 		*/
 		log: function(message) {
-			if (debug) 
+			if (debug)
 				console.log(message);
 			this.fulllogs.push(message);
 		},
@@ -171,9 +171,9 @@ var util = function (debug) {
 		*/
 		minify: function(str, length) {
 			if (str == undefined) str = '';
-			if (str.length > length) 
+			if (str.length > length)
 				return str.slice(0, length) + '...';
-			else 
+			else
 				return str;
 		},
 
@@ -198,7 +198,7 @@ var util = function (debug) {
 					break;
 				default:
 					error = response.data ? false : true;
-					status = error  ? response.response.status : response.data.status; 
+					status = error  ? response.response.status : response.data.status;
 					errMessage = status == 422 ? this.validateErrorMessage(response.response.data) : errMessage;
 					message = response.data && response.data.message ? this.messageToString(response.data.message) : message;
 					break;
@@ -239,15 +239,15 @@ var util = function (debug) {
 
 		/**
 		 * Create Custom Form data
-		 * 
+		 *
 		 * @return Object form data
 		 */
 
-		FormData: function() 
+		FormData: function()
 		{
 			return (
 			{
-				append: function (key, value) 
+				append: function (key, value)
 				{
 					this[key] = value;
 				}
@@ -296,7 +296,7 @@ var util = function (debug) {
 		/**
 		 * Return response and set status
 		 * @param {Response} result
-		 * @return {Response} data	 	
+		 * @return {Response} data
 		 */
 		getResponse: function(response) {
 			util.log(response);
@@ -316,6 +316,6 @@ var util = function (debug) {
 
 		toDate: function(date) {
 			return moment(date).fromNow();
-		}	
+		}
 	}
 }
