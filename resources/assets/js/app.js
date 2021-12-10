@@ -1,3 +1,10 @@
+
+import {routes} from './routes';
+
+const router=new VueRouter({
+    routes,
+});
+
 import Notification from './Helpers/notification';
 window.Notification=Notification
 //import Sweet alert
@@ -17,13 +24,6 @@ const Toast = Swal.mixin({
 
 window.Toast=Toast
 
-
-import {routes} from './routes';
-
-const router=new VueRouter({
-    routes,
-});
-
 // Initialize Vue
 const app = new Vue({
     router,
@@ -36,12 +36,10 @@ const app = new Vue({
         try:0,
         notif:'',
     },
-
     created(){
         data.setAdmin({
             name:"Loading...",
         });
-        this.notif=util.notify('Please wait...','loading');
         this.getAdmin(this.adminId);
     },
     methods:{
@@ -66,8 +64,22 @@ const app = new Vue({
                     else{
                         util.notif("An error occurred, Please try to refresh",'error');
                     }
-
                 })
+        },
+        logout:function () {
+            axios.get(this.baseURL+'logout')
+                .then( function(response) {
+                    location.href = this.baseURL+"admin/login";
+                })
+                .catch( function(error) {
+                    util.log(error);
+                    util.notify('An error occured', 'error');
+                });
         }
+    },
+    computed: {
+        admin: function() {
+            return data.admin;
+        },
     }
 })

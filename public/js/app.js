@@ -132,6 +132,11 @@ __webpack_require__.r(__webpack_exports__);
         message: 'Submit'
       };
     }
+  },
+  computed: {
+    admin: function admin() {
+      return data.admin;
+    }
   }
 });
 
@@ -744,6 +749,22 @@ var Notification = /*#__PURE__*/function () {
         type: 'warning',
         layout: "topRight",
         text: 'Opps wrong!',
+        timeout: 3000,
+        theme: 'mint',
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'animated fadeInRight',
+          close: 'animated fadeOutRight'
+        }
+      }).show();
+    }
+  }, {
+    key: "image_validation",
+    value: function image_validation() {
+      new Noty({
+        type: 'warning',
+        layout: "topRight",
+        text: 'Upload image less than 1MB!',
         timeout: 3000,
         theme: 'mint',
         closeWith: ['click', 'button'],
@@ -6175,30 +6196,30 @@ var __webpack_exports__ = {};
   !*** ./resources/assets/js/app.js ***!
   \************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Helpers_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Helpers/notification */ "./resources/assets/js/Helpers/notification.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/assets/js/routes.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./resources/assets/js/routes.js");
+/* harmony import */ var _Helpers_notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Helpers/notification */ "./resources/assets/js/Helpers/notification.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 
-window.Notification = _Helpers_notification__WEBPACK_IMPORTED_MODULE_0__["default"]; //import Sweet alert
+var router = new VueRouter({
+  routes: _routes__WEBPACK_IMPORTED_MODULE_0__.routes
+});
+
+window.Notification = _Helpers_notification__WEBPACK_IMPORTED_MODULE_1__["default"]; //import Sweet alert
 
 
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().mixin({
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   didOpen: function didOpen(toast) {
-    toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().stopTimer));
-    toast.addEventListener('mouseleave', (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().resumeTimer));
+    toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().stopTimer));
+    toast.addEventListener('mouseleave', (sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().resumeTimer));
   }
 });
-window.Toast = Toast;
-
-var router = new VueRouter({
-  routes: _routes__WEBPACK_IMPORTED_MODULE_2__.routes
-}); // Initialize Vue
+window.Toast = Toast; // Initialize Vue
 
 var app = new Vue({
   router: router,
@@ -6214,7 +6235,6 @@ var app = new Vue({
     data.setAdmin({
       name: "Loading..."
     });
-    this.notif = util.notify('Please wait...', 'loading');
     this.getAdmin(this.adminId);
   },
   methods: {
@@ -6238,6 +6258,19 @@ var app = new Vue({
           util.notif("An error occurred, Please try to refresh", 'error');
         }
       });
+    },
+    logout: function logout() {
+      axios.get(this.baseURL + 'logout').then(function (response) {
+        location.href = this.baseURL + "admin/login";
+      })["catch"](function (error) {
+        util.log(error);
+        util.notify('An error occured', 'error');
+      });
+    }
+  },
+  computed: {
+    admin: function admin() {
+      return data.admin;
     }
   }
 });

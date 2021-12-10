@@ -34,7 +34,7 @@ Route::group(['prefix'=>'admin'],function(){
 
 //Authentication
 Route::post('api/v1/login',[\App\Http\Controllers\backend\AuthController::class,'login']);
-
+Route::get('logout',[\App\Http\Controllers\backend\AuthController::class,'logout']);
 
 Route::resource('api/v1/admin',AdminController::class);
 

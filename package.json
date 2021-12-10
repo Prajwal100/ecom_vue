@@ -18,7 +18,7 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
-        "izitoast": "^1.4.0",
+        "noty": "^3.2.0-beta-deprecated",
         "sweetalert2": "^11.3.0",
         "vue": "^2.6.14"
     }

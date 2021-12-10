@@ -1,4 +1,5 @@
 class Notification {
+
     success(){
         new Noty({
             type:'success',
@@ -49,6 +50,21 @@ class Notification {
             type:'warning',
             layout:"topRight",
             text: 'Opps wrong!',
+            timeout:3000,
+            theme    : 'mint',
+            closeWith: ['click', 'button'],
+            animation: {
+                open : 'animated fadeInRight',
+                close: 'animated fadeOutRight'
+            }
+        }).show();
+    }
+
+    image_validation(){
+        new Noty({
+            type:'warning',
+            layout:"topRight",
+            text: 'Upload image less than 1MB!',
             timeout:3000,
             theme    : 'mint',
             closeWith: ['click', 'button'],

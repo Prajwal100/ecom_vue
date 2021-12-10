@@ -104,6 +104,11 @@
                     message: 'Submit'
                 }
             }
+        },
+        computed:{
+            admin:function () {
+                return data.admin;
+            }
         }
     }
 </script>

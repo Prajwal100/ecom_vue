@@ -26,4 +26,17 @@ class AuthController extends Controller
         }
     }
 
+    public function logout(Request $request){
+        session(['LOG'=>'OUT']);
+        $admin=$this->guard()->user();
+        if(!empty($admin)){
+            $this->guard()->logout();
+        }
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
 }
