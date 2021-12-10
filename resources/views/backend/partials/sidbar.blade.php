@@ -48,9 +48,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                <router-link to="/category" class="collapse-item">All Category</router-link>
+                <router-link to="/category-create" class="collapse-item" >Add Category</router-link>
             </div>
         </div>
     </li>

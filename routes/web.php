@@ -39,3 +39,4 @@ Route::post('api/v1/login',[\App\Http\Controllers\backend\AuthController::class,
 Route::resource('api/v1/admin',AdminController::class);
 
 Route::resource('banner',\App\Http\Controllers\backend\BannerController::class);
+Route::resource('category',\App\Http\Controllers\backend\CategoryController::class);

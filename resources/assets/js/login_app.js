@@ -11,20 +11,20 @@ const login_app=new Vue({
 
     methods:{
         submit:function () {
-            let notif = util.notify('Logging in', 'loading');
+            // let notif = util.notify('Logging in', 'loading');
 
             let loginData = this.getData();
             let URL = data.getBaseURL() + 'api/v1/login';
 
             axios.post(URL, loginData)
                 .then( function(response) {
-                    notif.close();
+                    // notif.close();
                     if (util.showResult(response))
                         location.href = data.getBaseURL() + 'admin';
+                    Notification.success()
                 })
                 .catch( function(error) {
-                    notif.close();
-                    util.showResult(error);
+                    Notification.error();
                 })
         },
         getData:function () {
