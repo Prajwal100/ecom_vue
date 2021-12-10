@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,8 @@ class AuthController extends Controller
         $email = $request->email;
         $password = $request->password;
         if(Auth::guard('admin')->attempt(['email'=>$email,'password'=>$password,'status'=>'active'])){
+            session(['LOG'=> 'IN']);
+            session(['ID' => Admin::where('email',$email)->first()->id]);
             return ['status'=>'success','message'=>['Login Successfully']];
         }
         else{

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//Route::get('/{vue_capture?}', function () {
+//    return view('welcome');
+//})->where('vue_capture', '[\/\w\.-]*');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,8 +27,8 @@ Route::get('/', function () {
 
 //Admin Page
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('/login',[\App\Http\Controllers\AdminController::class,'login']);
-    Route::get('/',[\App\Http\Controllers\AdminController::class,'index']);
+    Route::get('/login',[AdminController::class,'login']);
+    Route::get('/',[AdminController::class,'index']);
 });
 
 
@@ -29,3 +36,6 @@ Route::group(['prefix'=>'admin'],function(){
 Route::post('api/v1/login',[\App\Http\Controllers\backend\AuthController::class,'login']);
 
 
+Route::resource('api/v1/admin',AdminController::class);
+
+Route::resource('banner',\App\Http\Controllers\backend\BannerController::class);

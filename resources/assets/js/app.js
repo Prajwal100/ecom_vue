@@ -1,19 +1,32 @@
+import Notification from './Helpers/notification';
+window.Notification=Notification
+//import Sweet alert
+import Swal from "sweetalert2";
 
-
-const admin=(resolve)
-//Setting up Routes
-const routes=[
-    {
-        path:'/admin',
-        component:admin,
-        children:[
-            {path:'',component: adminIndex}
-        ]
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-]
+})
+
+window.Toast=Toast
+
+
+import {routes} from './routes';
+
+const router=new VueRouter({
+    routes,
+});
 
 // Initialize Vue
 const app = new Vue({
+    router,
     el:"#wrapper",
     data:{
         baseURL:data.getBaseURL(),

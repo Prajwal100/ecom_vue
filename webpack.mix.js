@@ -12,5 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/index.js', 'public/js')
-    .js('resources/assets/js/app.js', 'public/js')
+    .js('resources/assets/js/app.js', 'public/js').vue()
     .js('resources/assets/js/login_app.js', 'public/js');
