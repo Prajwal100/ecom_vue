@@ -25,7 +25,6 @@
                                     <div class="form-group">
                                         <label for="">Slug</label>
                                         <input type="text" name="title" class="form-control" v-model="form.slug" placeholder="Enter slug">
-                                        <small class="text-danger" v-if="errors.slug">{{errors.slug[0]}}</small>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -62,7 +61,7 @@
 
 <script>
     export default {
-        name: "create.vue",
+        name: "create",
         data(){
             return{
                 baseURL:data.baseURL,
@@ -83,6 +82,14 @@
             }
         },
         methods:{
+            submit(){
+                axios.post('/category',this.form)
+                .then(()=>{
+                    this.$router.push({name:'category'})
+                    Notification.success();
+                })
+                    .catch(error=>this.errors=error.response.data.errors)
+            },
             onFileSelected(event){
                 let file=event.target.files[0];
                 let reader=new FileReader();

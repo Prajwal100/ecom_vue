@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable=['title','slug','parent_id','is_parent','slug','status','image'];
 }

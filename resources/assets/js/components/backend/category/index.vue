@@ -63,7 +63,7 @@
 <script>
     import Swal from 'sweetalert2';
     export default {
-        name: "index.vue",
+        name: "index",
         created() {
             this.allCategories();
         },
