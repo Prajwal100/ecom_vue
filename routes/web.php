@@ -27,8 +27,8 @@ Route::get('/', function () {
 
 //Admin Page
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('/login',[AdminController::class,'login']);
-    Route::get('/',[AdminController::class,'index']);
+    Route::get('/login',[AdminController::class,'login'])->name('admin.login');
+    Route::get('/',[AdminController::class,'index'])->name('admin')->middleware('admin');
 });
 
 

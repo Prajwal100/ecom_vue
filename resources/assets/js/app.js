@@ -29,9 +29,9 @@ const app = new Vue({
     router,
     el:"#wrapper",
     data:{
-        baseURL:data.getBaseURL(),
-        adminId:data.getAdminId(),
-        storageURL:data.getStorageURL(),
+        baseURL: data.getBaseURL(),
+        storageURL: data.getStorageURL(),
+        adminId: data.getAdminId(),
 
         try:0,
         notif:'',
@@ -66,16 +66,18 @@ const app = new Vue({
                     }
                 })
         },
-        logout:function () {
+        logout: function() {
+            var vm = this;
+            util.notify('Logging out', 'loading');
             axios.get(this.baseURL+'logout')
                 .then( function(response) {
-                    location.href = this.baseURL+"admin/login";
+                    location.href = vm.baseURL+"admin/login";
                 })
                 .catch( function(error) {
                     util.log(error);
                     util.notify('An error occured', 'error');
                 });
-        }
+        },
     },
     computed: {
         admin: function() {

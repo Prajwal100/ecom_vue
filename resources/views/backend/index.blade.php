@@ -13,7 +13,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('backend.partials.sidbar')
+    @include('backend.partials.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

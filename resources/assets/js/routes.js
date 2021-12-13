@@ -19,8 +19,9 @@ const categoryEdit=require('./components/backend/category/edit.vue').default;
 //Setting up Routes
 export const routes=[
     {
-        path:'/admin',
+        path:'/',
         component:dashboard,
+        name:'dashboard'
     },
     //banner section
 

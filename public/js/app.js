@@ -814,8 +814,9 @@ var categoryEdit = (__webpack_require__(/*! ./components/backend/category/edit.v
 
 
 var routes = [{
-  path: '/admin',
-  component: dashboard
+  path: '/',
+  component: dashboard,
+  name: 'dashboard'
 }, //banner section
 {
   path: '/banner',
@@ -6226,8 +6227,8 @@ var app = new Vue({
   el: "#wrapper",
   data: {
     baseURL: data.getBaseURL(),
-    adminId: data.getAdminId(),
     storageURL: data.getStorageURL(),
+    adminId: data.getAdminId(),
     "try": 0,
     notif: ''
   },
@@ -6260,8 +6261,10 @@ var app = new Vue({
       });
     },
     logout: function logout() {
+      var vm = this;
+      util.notify('Logging out', 'loading');
       axios.get(this.baseURL + 'logout').then(function (response) {
-        location.href = this.baseURL + "admin/login";
+        location.href = vm.baseURL + "admin/login";
       })["catch"](function (error) {
         util.log(error);
         util.notify('An error occured', 'error');
