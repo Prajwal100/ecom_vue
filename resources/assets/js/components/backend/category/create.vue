@@ -83,12 +83,12 @@
         },
         methods:{
             submit(){
-                axios.post('/category',this.form)
+                axios.post('/dashboard/category',this.form)
                 .then(()=>{
                     this.$router.push({name:'category'})
                     Notification.success();
                 })
-                    .catch(error=>this.errors=error.response.data.errors)
+                    .catch(console.log(error))
             },
             onFileSelected(event){
                 let file=event.target.files[0];

@@ -15,6 +15,14 @@ const categoryCreate=require('./components/backend/category/create.vue').default
 const categoryEdit=require('./components/backend/category/edit.vue').default;
 
 //Category routes end here...
+//Product routes starts here...
+
+const product=require('./components/backend/product/index.vue').default;
+const productCreate=require('./components/backend/product/create.vue').default;
+const productEdit=require('./components/backend/product/edit').default;
+
+//Product routes end here...
+
 
 //Setting up Routes
 export const routes=[
@@ -33,6 +41,11 @@ export const routes=[
     {path:'/category',component: category,name:'category'},
     {path:'/category-create',component: categoryCreate,name:'category-create'},
     {path:'/category-edit/:id',component: categoryEdit,name: 'category-edit'},
+
+    //product section
+    { path:'/product',component: product,name:'product'},
+    {path:'/product-create',component: productCreate,name: 'product-create'},
+    {path:'/product-edit/:id',component: productEdit,name:'product-edit'},
 
 
 ]

@@ -14,13 +14,13 @@ const login_app=new Vue({
             // let notif = util.notify('Logging in', 'loading');
 
             let loginData = this.getData();
-            let URL = data.getBaseURL() + 'api/v1/login';
+            let URL = data.getBaseURL() + 'login';
 
             axios.post(URL, loginData)
                 .then( function(response) {
                     // notif.close();
                     if (util.showResult(response))
-                        location.href = data.getBaseURL() + 'admin';
+                        location.href = data.getBaseURL() + 'dashboard';
                     Notification.success()
                 })
                 .catch( function(error) {

@@ -81,19 +81,19 @@
         },
         created() {
             let id=this.$route.params.id;
-            axios.get('category/'+id)
+            axios.get('/dashboard/category/'+id)
                 .then(({data})=>(this.form=data))
                 .catch(console.log('error'));
         },
         methods:{
             update(){
                 let id=this.$route.params.id;
-                axios.patch('/category/'+id,this.form)
+                axios.patch('/dashboard/category/'+id,this.form)
                 .then(()=>{
                     this.$router.push({name:'category'})
                     Notification.success();
                 })
-                .catch(error=>this.errors=error.response.data.errors)
+                .catch(console.log(error))
             },
             onFileSelected(event){
                 let file=event.target.files[0];

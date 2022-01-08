@@ -38,7 +38,8 @@
                                 <img :src="category.image" style="max-width: 120px;" alt="">
                             </td>
                             <td>
-                                {{category.is_parent}}
+                                <span v-if="category.is_parent">Yes</span>
+                                <span v-else>No</span>
                             </td>
                             <td>
                                 {{category.parent_id}}
@@ -74,7 +75,7 @@
         },
         methods:{
             allCategories(){
-                axios.get('category')
+                axios.get('dashboard/category')
                 .then(({data})=>(this.categories=data))
                 .catch()
             },

@@ -3,6 +3,7 @@ import {routes} from './routes';
 
 const router=new VueRouter({
     routes,
+    // mode:'history'
 });
 
 import Notification from './Helpers/notification';
@@ -66,6 +67,26 @@ const app = new Vue({
                     }
                 })
         },
+
+        getCategories:function(){
+            axios.get(this.baseURL+'category')
+                .then(function (response) {
+                    this.try=0;
+                    this.notif.close();
+                    data.setCategories(response.data);
+                })
+                .catch(function (error) {
+                    util.log(error);
+                    if(this.try<3){
+                        this.try++;
+                        this.getCategories();
+                    }else{
+                        util.notify("An error occurred");
+                    }
+
+                })
+        },
+
         logout: function() {
             var vm = this;
             util.notify('Logging out', 'loading');
@@ -83,5 +104,8 @@ const app = new Vue({
         admin: function() {
             return data.admin;
         },
+        categories:function () {
+            return data.categories;
+        }
     }
 })

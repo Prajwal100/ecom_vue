@@ -6,6 +6,14 @@ var data=new Vue({
             admin:{},
             adminId:0,
 
+            categories:[],
+            category:{},
+
+            products:[],
+            product:{},
+
+            orders:[],
+
         }
     },
     methods:{
@@ -27,6 +35,28 @@ var data=new Vue({
 
         getAdminId:function () {
             return this.adminId;
+        },
+
+        setCategories:function(categories){
+            this.categories=categories;
+        },
+
+        getCategories:function(){
+            return this.categories;
+        },
+
+        setProducts:function(products){
+            this.products=products;
+        },
+        getProducts:function(){
+            return this.products;
+        },
+
+        setOrders:function(orders){
+            this.orders=orders;
+        },
+        getOrders:function(){
+            return this.orders;
         },
 
         /**
